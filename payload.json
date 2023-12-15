@@ -3,63 +3,101 @@
   "confidentialInstanceConfig": {
     "enableConfidentialCompute": false
   },
+  "cpuPlatform": "Intel Broadwell",
+  "creationTimestamp": "2023-12-14T16:35:09.608-08:00",
   "deletionProtection": false,
   "description": "",
   "disks": [
     {
-      "autoDelete": true,
-      "boot": true,
+      "architecture": "X86_64",
+      "guestOsFeatures": [
+        {
+          "type": "UEFI_COMPATIBLE"
+        },
+        {
+          "type": "VIRTIO_SCSI_MULTIQUEUE"
+        },
+        {
+          "type": "GVNIC"
+        },
+        {
+          "type": "SEV_CAPABLE"
+        }
+      ],
+      "type": "PERSISTENT",
+      "licenses": [
+        "projects/debian-cloud/global/licenses/debian-11-bullseye"
+      ],
       "deviceName": "slave1",
-      "initializeParams": {
-        "diskSizeGb": "10",
-        "diskType": "projects/spark-371009/zones/us-west4-b/diskTypes/pd-balanced",
-        "labels": {},
-        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20221102"
-      },
+      "autoDelete": true,
+      "source": "projects/cloudlab5-407919/zones/europe-west1-b/disks/slave1",
+      "index": 0,
+      "boot": true,
+      "kind": "compute#attachedDisk",
       "mode": "READ_WRITE",
-      "type": "PERSISTENT"
+      "interface": "SCSI",
+      "diskSizeGb": "10"
     }
   ],
   "displayDevice": {
     "enableDisplay": false
   },
-  "guestAccelerators": [],
+  "fingerprint": "wKmYng2YIEU=",
+  "id": "4712067301436170707",
   "keyRevocationActionType": "STOP",
-  "labels": {},
-  "machineType": "projects/spark-371009/zones/europe-west1-b/machineTypes/e2-medium",
+  "kind": "compute#instance",
+  "labelFingerprint": "42WmSpB8rSM=",
+  "lastStartTimestamp": "2023-12-15T01:48:12.023-08:00",
+  "lastStopTimestamp": "2023-12-14T17:31:51.777-08:00",
+  "machineType": "projects/cloudlab5-407919/zones/europe-west1-b/machineTypes/e2-medium",
   "metadata": {
+    "fingerprint": "digpp_VCNGA=",
+    "kind": "compute#metadata",
     "items": [
       {
-        "key": "startup-script",
-        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.spark-371009.internal:7077"
+        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.5.0-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.cloudlab5-407919.internal:7077",
+        "key": "startup-script"
       }
     ]
   },
   "name": "slave1",
   "networkInterfaces": [
     {
+      "stackType": "IPV4_ONLY",
+      "name": "nic0",
+      "network": "projects/cloudlab5-407919/global/networks/default",
       "accessConfigs": [
         {
           "name": "External NAT",
+          "type": "ONE_TO_ONE_NAT",
+          "natIP": "34.38.87.147",
+          "kind": "compute#accessConfig",
           "networkTier": "PREMIUM"
         }
       ],
-      "stackType": "IPV4_ONLY",
-      "subnetwork": "projects/spark-371009/regions/europe-west1/subnetworks/default"
+      "subnetwork": "projects/cloudlab5-407919/regions/europe-west1/subnetworks/default",
+      "networkIP": "10.132.0.8",
+      "fingerprint": "Wvxgqh-KVW8=",
+      "kind": "compute#networkInterface"
     }
   ],
   "reservationAffinity": {
     "consumeReservationType": "ANY_RESERVATION"
   },
+  "resourceStatus": {
+    "scheduling": {}
+  },
   "scheduling": {
+    "onHostMaintenance": "TERMINATE",
+    "provisioningModel": "SPOT",
     "automaticRestart": false,
     "instanceTerminationAction": "STOP",
-    "onHostMaintenance": "TERMINATE",
-    "provisioningModel": "SPOT"
+    "preemptible": true
   },
+  "selfLink": "projects/cloudlab5-407919/zones/europe-west1-b/instances/slave1",
   "serviceAccounts": [
     {
-      "email": "569439294570-compute@developer.gserviceaccount.com",
+      "email": "1029745206513-compute@developer.gserviceaccount.com",
       "scopes": [
         "https://www.googleapis.com/auth/devstorage.read_only",
         "https://www.googleapis.com/auth/logging.write",
@@ -71,12 +109,25 @@
     }
   ],
   "shieldedInstanceConfig": {
-    "enableIntegrityMonitoring": true,
     "enableSecureBoot": false,
-    "enableVtpm": true
+    "enableVtpm": true,
+    "enableIntegrityMonitoring": true
   },
+  "shieldedInstanceIntegrityPolicy": {
+    "updateAutoLearnPolicy": true
+  },
+  "shieldedVmConfig": {
+    "enableSecureBoot": false,
+    "enableVtpm": true,
+    "enableIntegrityMonitoring": true
+  },
+  "shieldedVmIntegrityPolicy": {
+    "updateAutoLearnPolicy": true
+  },
+  "startRestricted": false,
+  "status": "RUNNING",
   "tags": {
-    "items": []
+    "fingerprint": "42WmSpB8rSM="
   },
-  "zone": "projects/spark-371009/zones/europe-west1-b"
+  "zone": "projects/cloudlab5-407919/zones/europe-west1-b"
 }
